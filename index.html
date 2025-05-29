@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="darkorchid" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Dark-Mode Study Scheduler</title>
+  <style>
+    body {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h1, h2, h3 { color: #89b4fa; }
+    .import { margin-bottom: 20px; }
+    input[type="file"] {
+      background: #45475a; color: #cdd6f4;
+      border: none; padding: 8px; border-radius: 6px;
+    }
+    .today, .upnext, .phase { margin-top: 20px; }
+    .task {
+      background: #313244; border: 1px solid #585b70;
+      padding: 10px; border-radius: 8px; margin-bottom: 10px;
+    }
+    .progress-container {
+      background: #222233; border-radius: 8px;
+      height: 16px; overflow: hidden; margin-top: 6px;
+    }
+    .progress-bar {
+      height: 100%; background: #94e2d5;
+      width: 0; transition: width 0.3s;
+    }
+    .not-started { color: #f9e2af; font-style: italic; }
+  </style>
+</head>
+<body>
+  <h1>📆 Study Schedule</h1>
+
+  <div class="import">
+    <label>Import schedule JSON: </label></br>
+    <input type="file" id="importJson" accept=".json" />
+  </div>
+
+  <div class="today" id="todayBlock">
+    <h2>📌 Today's Tasks</h2>
+    <p class="not-started">No data loaded.</p>
+  </div>
+
+  <div class="upnext" id="upNextBlock">
+    <h2>⏭️ Up Next</h2>
+    <p class="not-started">—</p>
+  </div>
+
+  <div class="phase" id="phaseBlock">
+    <h2>📊 Current Phase Progress</h2>
+    <div><strong>Phase:</strong> <span id="phaseName">—</span></div>
+    <div class="progress-container">
+      <div id="phaseBar" class="progress-bar"></div>
+    </div>
+  </div>
+
+  <script>
+    let settings = { study: 10, rest: 2 };
+    let phases = [];
+
+    document.getElementById('importJson')
+      .addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = evt => {
+          try {
+            const json = JSON.parse(evt.target.result);
+            settings = json.settings || settings;
+            phases = json.phases || [];
+            render();
+          } catch {
+            alert('Invalid JSON');
+          }
+        };
+        reader.readAsText(file);
+      });
+
+    function render() {
+      const today = new Date();
+      const isoToday = today.toISOString().slice(0,10);
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate()+1);
+      const isoTomorrow = tomorrow.toISOString().slice(0,10);
+
+      let dayFound = false, done = 0, total = 0;
+      let currentPhaseName = 'Not started yet';
+      let tomorrowPhase = null;
+
+      const todayDiv = document.getElementById('todayBlock');
+      todayDiv.innerHTML = '<h2>📌 Today\'s Tasks</h2>';
+
+      phases.forEach(phase => {
+        phase.tasks.forEach(task => {
+          total++;
+          if (task.date === isoToday) {
+            dayFound = true;
+            const startMs = new Date(task.date+'T'+task.start).getTime();
+            const endMs   = startMs + task.duration*60000;
+            const now     = today.getTime();
+            let pct = 0;
+            if (now >= endMs) pct = 100;
+            else if (now > startMs) pct = (now - startMs)/(endMs - startMs)*100;
+
+            todayDiv.innerHTML += `
+              <div class="task">
+                <strong>${task.subject}</strong><br/>
+                Time: ${task.start} (${task.duration}m)<br/>
+                <div class="progress-container">
+                  <div class="progress-bar" style="width:${pct}%"></div>
+                </div>
+              </div>`;
+          }
+          if (new Date(task.date) <= today) done++;
+        });
+
+        if (isoToday >= phase.start && isoToday <= phase.end) {
+          currentPhaseName = phase.name;
+        }
+
+        if (isoTomorrow >= phase.start && isoTomorrow <= phase.end) {
+          tomorrowPhase = phase.name;
+        }
+      });
+
+      if (!dayFound) {
+        todayDiv.innerHTML += 
+          `<p class="not-started">No tasks scheduled for today.</p>`;
+      }
+
+      const upDiv = document.getElementById('upNextBlock');
+      if (tomorrowPhase === null) {
+        upDiv.innerHTML = '<h2>⏭️ Up Next</h2><p class="not-started">No upcoming phases.</p>';
+      }
+      else if (tomorrowPhase === currentPhaseName) {
+        upDiv.innerHTML = `<h2>⏭️ Up Next</h2><p>Same schedule (Phase: ${currentPhaseName})</p>`;
+      } else {
+        const nextStart = phases.find(p => p.name === tomorrowPhase).start;
+        upDiv.innerHTML = `<h2>⏭️ Up Next</h2>
+          <p>Next phase: <strong>${tomorrowPhase}</strong><br/>
+          Starts on: ${nextStart}</p>`;
+      }
+
+      document.getElementById('phaseName').innerText = currentPhaseName;
+      document.getElementById('phaseBar').style.width = total ? (done/total*100)+'%' : '0%';
+    }
+  </script>
+</body>
+</html>
