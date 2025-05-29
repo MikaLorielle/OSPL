@@ -1,0 +1,83 @@
+{
+  "settings": {
+    "study": 10,
+    "rest": 2
+  },
+  "phases": [
+    {
+      "name": "Computer Science + English",
+      "start": "2025-05-30",
+      "end": "2025-06-17",
+      "tasks": [
+        { "date": "2025-05-30", "start": "10:00", "duration": 60, "subject": "CS: Unit 2 (Objects)" },
+        { "date": "2025-05-30", "start": "11:15", "duration": 60, "subject": "English S2: Unit 2 Summary" },
+        
+        { "date": "2025-05-31", "start": "10:00", "duration": 90, "subject": "CS: Unit 3 (Booleans) Part 1" },
+        { "date": "2025-05-31", "start": "11:45", "duration": 60, "subject": "English S2: Unit 3 Discussion" },
+        
+        { "date": "2025-06-02", "start": "10:00", "duration": 90, "subject": "CS: Unit 3 (Booleans) Part 2" },
+        { "date": "2025-06-02", "start": "11:45", "duration": 60, "subject": "English S2: Unit 4 Health Investigation" },
+
+        { "date": "2025-06-03", "start": "10:00", "duration": 90, "subject": "CS: Unit 4 (Iteration) Part 1" },
+        { "date": "2025-06-03", "start": "11:45", "duration": 60, "subject": "English S2: Unit 5 Literary Analysis" },
+
+        { "date": "2025-06-04", "start": "10:00", "duration": 90, "subject": "CS: Unit 4 (Iteration) Part 2" },
+        { "date": "2025-06-04", "start": "11:45", "duration": 60, "subject": "English S1: Cleanup & Discussions" },
+
+        { "date": "2025-06-05", "start": "10:00", "duration": 90, "subject": "CS: Unit 5 (Writing Classes) Part 1" },
+        { "date": "2025-06-05", "start": "11:45", "duration": 60, "subject": "English S1: Final Reflection" },
+
+        { "date": "2025-06-06", "start": "10:00", "duration": 90, "subject": "CS: Unit 5 (Writing Classes) Part 2" },
+        { "date": "2025-06-06", "start": "11:45", "duration": 60, "subject": "English S1: Semester Test Prep" },
+
+        { "date": "2025-06-07", "start": "10:00", "duration": 90, "subject": "CS S2: Unit 1 (Arrays)" },
+        { "date": "2025-06-07", "start": "11:45", "duration": 60, "subject": "Catch-Up / Buffer" },
+
+        { "date": "2025-06-09", "start": "10:00", "duration": 90, "subject": "CS S2: Unit 2 (ArrayList)" },
+        { "date": "2025-06-09", "start": "11:45", "duration": 60, "subject": "Catch-Up / Buffer" },
+
+        { "date": "2025-06-10", "start": "10:00", "duration": 90, "subject": "CS S2: Unit 3 (2D Arrays)" },
+        { "date": "2025-06-10", "start": "11:45", "duration": 60, "subject": "Catch-Up / Buffer" },
+
+        { "date": "2025-06-11", "start": "10:00", "duration": 90, "subject": "CS S2: Unit 4 (Inheritance)" },
+        { "date": "2025-06-11", "start": "11:45", "duration": 60, "subject": "Catch-Up / Buffer" },
+
+        { "date": "2025-06-12", "start": "10:00", "duration": 90, "subject": "CS S2: Unit 5 (Recursion)" },
+        { "date": "2025-06-12", "start": "11:45", "duration": 60, "subject": "Catch-Up / Buffer" },
+
+        { "date": "2025-06-13", "start": "10:00", "duration": 60, "subject": "English S1: Submit Missing Discussions" },
+        { "date": "2025-06-13", "start": "11:15", "duration": 60, "subject": "English S2: Test Review" },
+
+        { "date": "2025-06-14", "start": "10:00", "duration": 90, "subject": "Buffer / Final CS Quizzes" },
+        { "date": "2025-06-14", "start": "11:45", "duration": 60, "subject": "Buffer / Final English Submissions" },
+
+        { "date": "2025-06-16", "start": "10:00", "duration": 90, "subject": "Catch-Up & Review All" }
+      ]
+    },
+    {
+      "name": "Animation",
+      "start": "2025-06-18",
+      "end": "2025-07-03",
+      "tasks": [
+        { "date": "2025-06-18", "start": "10:00", "duration": 120, "subject": "Animation: Unit 1 & 2" },
+        { "date": "2025-06-19", "start": "10:00", "duration": 120, "subject": "Animation: Unit 3 & 4" },
+        { "date": "2025-06-20", "start": "10:00", "duration": 120, "subject": "Animation: Midterm Exam" },
+        { "date": "2025-06-21", "start": "10:00", "duration": 120, "subject": "Animation: Unit 5 & 6" },
+        { "date": "2025-06-23", "start": "10:00", "duration": 120, "subject": "Animation: Unit 7 & 8" },
+        { "date": "2025-06-24", "start": "10:00", "duration": 120, "subject": "Animation: Final Cleanup" }
+      ]
+    },
+    {
+      "name": "Forensics",
+      "start": "2025-07-04",
+      "end": "2025-08-03",
+      "tasks": [
+        { "date": "2025-07-04", "start": "10:00", "duration": 120, "subject": "Forensics: Unit 1 & 2" },
+        { "date": "2025-07-05", "start": "10:00", "duration": 120, "subject": "Forensics: Unit 3 & 4" },
+        { "date": "2025-07-07", "start": "10:00", "duration": 120, "subject": "Forensics: Unit 5 & 6" },
+        { "date": "2025-07-08", "start": "10:00", "duration": 120, "subject": "Forensics: Research Paper" },
+        { "date": "2025-07-10", "start": "10:00", "duration": 120, "subject": "Forensics: Final Semester Test" }
+      ]
+    }
+  ]
+}
