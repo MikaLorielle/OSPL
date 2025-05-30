@@ -1,8 +1,10 @@
 {
   "settings": {
-    "study": 10,
-    "rest": 2
-  },
+  "study": 10,
+  "rest": 2,
+  "massRestAfter": 4,
+  "massRestDuration": 30
+},
   "phases": [
     {
       "name": "Computer Science + English",
